@@ -192,14 +192,29 @@ public class Login extends javax.swing.JFrame {
         p.setVisible(true);
         this.setVisible(false);
          } 
-       }else if (Text1.getText().isEmpty() && Text2.getText().isEmpty()){
-   
-       }else{
+       }if(rs.next()==false){
+           if(rs.next()==false){
            JOptionPane.showMessageDialog(this,"Emri,fjalekalimi ose sistemi jane shkruar gabim");
          Text1.setText("");
          Text2.setText("");
+           clc++;
+           }
+           if(clc==3 || clc==6){
+           int pergjigje=JOptionPane.showConfirmDialog(this,"Ke harruar fjalkalimin?","Rikthejeni",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+         if(pergjigje==JOptionPane.YES_OPTION){
+         dispose();
+         Recover r =new Recover();
+         r.setVisible(true);
+         this.setVisible(false);
+         if(pergjigje==JOptionPane.NO_OPTION){
+         dispose();
+         Login l =new Login();
+         l.setVisible(true);
+         this.setVisible(false);
+         }
+           }
        }
-      
+       }
        conn.close();
       }catch (Exception e){
       System.out.println(e.getMessage());
@@ -228,23 +243,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_HyrKeyPressed
 
     private void HyrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HyrMouseClicked
-     clc++;
-     if(clc==3){
-     int pergjigje=JOptionPane.showConfirmDialog(this,"Ke harruar fjalkalimin?","Rikthejeni",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-     if(pergjigje==JOptionPane.YES_OPTION){
-         dispose();
-         Recover r =new Recover();
-         r.setVisible(true);
-         this.setVisible(false);
-     }
-     if(pergjigje==JOptionPane.NO_OPTION){
-         
-         Login l =new Login();
-         l.setVisible(true);
-         this.setVisible(false);
-     }
-     
-     }
+ 
     }//GEN-LAST:event_HyrMouseClicked
 
     /**
